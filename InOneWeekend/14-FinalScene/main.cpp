@@ -66,6 +66,7 @@ hittable_list random_scene() {
 
     auto material1 = make_shared<dielectric>(1.5);
     world.add(make_shared<sphere>(point3(0, 1, 0), 1.0, material1));
+    world.add(make_shared<sphere>(point3(0, 1, 0), -0.9, material1));
 
     auto material2 = make_shared<lambertian>(color(0.4, 0.2, 0.1));
     world.add(make_shared<sphere>(point3(-4, 1, 0), 1.0, material2));
@@ -80,9 +81,9 @@ int main(void)
 {
     //image dimensions
     const auto aspectRatio = 3.0 / 2.0;
-    const int imageHeight = 800;
+    const int imageHeight = 1000;
     const int imageWidth = static_cast<int>(imageHeight * aspectRatio);
-    const int samplesPerPixel = 100;
+    const int samplesPerPixel = 500;
     const int maxDepth = 50;
 
     //world
@@ -93,7 +94,7 @@ int main(void)
     point3 lookat(0,0,0);
     vec3 vup(0,1,0);
     auto dist_to_focus = 10.0;
-    auto aperture = 0.13;
+    auto aperture = 0.15;
 
     camera cam(lookfrom, lookat, vup, 20, aspectRatio, aperture, dist_to_focus);
 
